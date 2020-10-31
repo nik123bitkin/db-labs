@@ -58,6 +58,8 @@ INNER JOIN (
 ) [maxIDs] ON [maxIDs].[AddressType] = [a].[AddressType]
 WHERE [a].[AddressID] <> [maxIDs].[MaxID];
 
+SELECT * FROM [dbo].[Address]
+
 ALTER TABLE [dbo].[Address]
 DROP COLUMN [AddressType]
 
@@ -70,7 +72,7 @@ SELECT object_id
 FROM sys.objects
 WHERE schema_Name(schema_id) = 'dbo' AND [name] = 'Address')
 SET @Command = RTRIM(SUBSTRING(@Command, 0, LEN(@Command)))
-print @Command
+PRINT @Command
 
 EXECUTE (@Command)
 
